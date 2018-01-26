@@ -2,7 +2,8 @@
   "name": "my-editor",
   "main": "my-editor.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0"
+    "polymer": "Polymer/polymer#^2.0.0",
+    "polymer-quill": "arsnebula/polymer-quill#^1.2.4"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",

@@ -1,33 +1,68 @@
 <link rel="import" href="../polymer/polymer-element.html">
-
+<link rel="import" href="../polymer-quill/polymer-quill.html">
 <dom-module id="my-editor">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
+    <style include="quill-core quill-snow"></style>
+    <div id="editor"></div>
+    <button on-click="getHtml">GetHtml</button>
+    <button on-click="addContent">AddContent</button>
   </template>
 
   <script>
-    /**
-     * `my-editor`
-     * 
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
     class MyEditor extends Polymer.Element {
       static get is() { return 'my-editor'; }
       static get properties() {
         return {
-          prop1: {
+          value: {
             type: String,
-            value: 'my-editor'
+            value: '<h1>Hello World</h1>'
           }
         };
+      }
+      ready() {
+        super.ready()
+         var toolbarOptions = [
+            [{
+                    'font': []
+                },
+                {
+                    'header': [1, 2, 3, 4, 5, 6, false]
+                }
+            ],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{
+                    'color': []
+                },
+                {
+                    'background': []
+                },
+            ],
+            [{
+                    'align': []
+                },
+                {
+                    'list': 'ordered'
+                },
+                {
+                    'list': 'bullet'
+                }
+            ],
+            ['link', 'image']
+        ];
+        this.editor = new Quill(this.$.editor, {
+            modules: { toolbar: toolbarOptions},
+            theme: 'snow'
+        })
+        // this.editor.container.firstChild.innerHTML = '<h1>Hello World</h1>'
+      }
+      _setValue(val){
+        this.editor.container.firstChild.innerHTML = val
+      }
+      getHtml(){
+        console.log(this.editor.container.firstChild.innerHTML) // return html 
+      }
+      addContent(){
+        console.log(this.editor.getContents())
       }
     }
 
