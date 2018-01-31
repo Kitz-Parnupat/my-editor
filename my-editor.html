@@ -15,7 +15,8 @@
         return {
           value: {
             type: String,
-            value: '<p>Hello World!</p><p>Some initial <strong>bold</strong> text</p><p><br></p>'
+            value: '',
+            notify:true
           }
         };
       }
@@ -76,7 +77,7 @@
       imageHandler(){
         var range = this.quill.getSelection();
         var value = prompt('What is the image URL');
-        // console.log(this.quill.getSelection())
+        console.log(this.quill)
         this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
       }
     }
