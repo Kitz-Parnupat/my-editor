@@ -1,0 +1,30 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer-quill/polymer-quill.html">
+<dom-module id="my-editor-render">
+  <template>
+    <style include="quill-core quill-snow"></style>
+    <div id="render">
+        [[value]]
+    </div>
+  </template>
+
+  <script>
+    class MyEditorRender extends Polymer.Element {
+      static get is() { return 'my-editor-render'; }
+      static get properties() {
+        return {
+          value: {
+            type: String,
+            value: '<h1><span class="ql-font-monospace">Hello World.</span></h1>',
+            observer:'_renderHtml'
+          }
+        };
+      }
+      _renderHtml(val){
+          this.$.render.innerHTML = val
+      }
+    }
+
+    window.customElements.define(MyEditorRender.is, MyEditorRender);
+  </script>
+</dom-module>
