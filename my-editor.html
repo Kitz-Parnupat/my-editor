@@ -15,7 +15,7 @@
         return {
           value: {
             type: String,
-            value: '<h1>Hello World</h1>'
+            value: '<p>Hello World!</p><p>Some initial <strong>bold</strong> text</p><p><br></p>'
           }
         };
       }
@@ -50,19 +50,34 @@
             ['link', 'image']
         ];
         this.editor = new Quill(this.$.editor, {
-            modules: { toolbar: toolbarOptions},
+            modules: { 
+              toolbar: {
+                container:toolbarOptions,
+                handlers: {
+                  image: this.imageHandler
+                }
+              } 
+            },
             theme: 'snow'
         })
-        // this.editor.container.firstChild.innerHTML = '<h1>Hello World</h1>'
+        console.log(this.editor)
+        this.editor.container.firstChild.innerHTML =  this.value
       }
       _setValue(val){
         this.editor.container.firstChild.innerHTML = val
       }
       getHtml(){
         console.log(this.editor.container.firstChild.innerHTML) // return html 
+        this.value = this.editor.container.firstChild.innerHTML;
       }
       addContent(){
-        console.log(this.editor.getContents())
+        this.editor.container.firstChild.innerHTML = this.value;
+      }
+      imageHandler(){
+        var range = this.quill.getSelection();
+        var value = prompt('What is the image URL');
+        // console.log(this.quill.getSelection())
+        this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
       }
     }
 
