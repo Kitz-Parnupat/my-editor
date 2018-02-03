@@ -4,8 +4,8 @@
   <template>
     <style include="quill-core quill-snow"></style>
     <div id="editor"></div>
-     <button on-click="getHtml">GetHtml</button>
-    <button on-click="addContent">AddContent</button> 
+    <!-- <button on-click="getHtml">GetHtml</button>
+    <button on-click="addContent">AddContent</button>  -->
   </template>
 
   <script>
@@ -61,14 +61,14 @@
             },
             theme: 'snow'
         })
-        console.log(this.editor)
+        // console.log(this.editor)
         this.editor.container.firstChild.innerHTML =  this.value
       }
       _setValue(val){
         this.editor.container.firstChild.innerHTML = val
       }
       getHtml(){
-        console.log(this.editor.container.firstChild.innerHTML) // return html 
+        // console.log(this.editor.container.firstChild.innerHTML) // return html 
         this.value = this.editor.container.firstChild.innerHTML;
       }
       addContent(){
